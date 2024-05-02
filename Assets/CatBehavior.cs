@@ -9,15 +9,15 @@ public class CatBehavior : MonoBehaviour
     public float JumpForce;
     public Animator Animator;
     public Rigidbody2D Rigidbody;
-    // public AudioSource audioSource;
     public SpriteRenderer SpriteRenderer;
+    public GameObject ZZZ;
     private float _timer;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
     }
     void ResetAnimation()
     {
@@ -25,6 +25,7 @@ public class CatBehavior : MonoBehaviour
         Animator.SetBool("lick", false);
         Animator.SetBool("sleep", false);
         _timer = 0;
+        ZZZ.SetActive(false);
     }
     // Update is called once per frame
     private void Update()
@@ -38,8 +39,12 @@ public class CatBehavior : MonoBehaviour
             Animator.SetBool("lick", true);
         else if(_timer > 20f && _timer < 23f)
             Animator.SetBool("lick", false);
-        else if(_timer > 23f)
-            Animator.SetBool("sleep", true);            
+        else if(_timer > 23f){
+            Animator.SetBool("sleep", true);     
+            ZZZ.SetActive(true);       
+        }
+        else
+            ZZZ.SetActive(false);
 
         //go right
         if (Input.GetKey(KeyCode.D))
